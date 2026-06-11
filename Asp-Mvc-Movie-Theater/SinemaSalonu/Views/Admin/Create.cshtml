@@ -1,0 +1,60 @@
+@model SinemaSalonu.Models.Movie
+
+@{
+    ViewBag.Title = "Film Ekle";
+}
+
+<h2 class="text-uppercase fw-bold text-danger mt-4 mb-4">YENİ FİLM EKLE</h2>
+
+<div class="card bg-dark text-white rounded-0 border-light p-4 shadow-lg mb-5" style="border: 1px solid #444;">
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control bg-secondary text-white rounded-0 border-0" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control bg-secondary text-white rounded-0 border-0" } })
+                @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control bg-secondary text-white rounded-0 border-0", @rows = "4", @id = "Description" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.ImageUrl, new { htmlAttributes = new { @class = "form-control bg-secondary text-white rounded-0 border-0", @placeholder = "https://example.com/image.jpg" } })
+                @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.ReleaseDate, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control bg-secondary text-white rounded-0 border-0", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <input type="submit" value="KAYDET" class="btn btn-danger btn-lg rounded-0 fw-bold px-5" />
+                @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-outline-light btn-lg rounded-0" })
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts {
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('Description');
+    </script>
+}

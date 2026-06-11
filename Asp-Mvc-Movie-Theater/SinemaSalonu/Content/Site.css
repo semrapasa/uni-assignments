@@ -1,0 +1,61 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override default bootstrap light theme bits */
+.text-dark {
+    color: #f8f9fa !important;
+}
+
+.table {
+    color: #e0e0e0;
+}
+
+.form-control, .form-control:focus {
+    background-color: #2c2c2c;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+.btn-outline-dark {
+    color: #e0e0e0;
+    border-color: #e0e0e0;
+}
+
+.btn-outline-dark:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+}
+
+a {
+    color: #e53935;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff6f60;
+    text-decoration: underline;
+}
+
+hr {
+    border-top: 1px solid #444;
+}
+
+/* Validation errors */
+.field-validation-error {
+    color: #ff5252;
+}

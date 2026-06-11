@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SinemaSalonu.Models.Movie>
+
+@{
+    ViewBag.Title = "Ana Sayfa";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show rounded-0 mt-3" role="alert">
+        <strong>Harika!</strong> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="text-center mt-5 mb-5">
+    <h1 class="display-4 fw-bold text-uppercase text-danger" style="letter-spacing: 5px;">VİZYONDAKİLER</h1>
+    <p class="lead text-secondary">En yeni filmleri keşfedin ve yerinizi ayırtın.</p>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card h-100 rounded-0 border-0 shadow-sm" style="background-color: #1e1e1e;">
+                <div style="height: 400px; overflow: hidden; position: relative;">
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@item.ImageUrl" class="card-img-top rounded-0" alt="@item.Title" style="width: 100%; height: 100%; object-fit: cover;">
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center justify-content-center h-100 bg-secondary text-white">
+                            <span>Resim Yok</span>
+                        </div>
+                    }
+                    <div class="position-absolute bottom-0 start-0 w-100 p-2" style="background: linear-gradient(transparent, #000);">
+                        <span class="badge bg-danger rounded-0">@item.Genre</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-white text-uppercase">@item.Title</h5>
+                    <p class="card-text text-secondary small">Vizyon Tarihi: @item.ReleaseDate.ToString("dd MMMM yyyy")</p>
+                    <p class="card-text text-light" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">@Html.Raw(item.Description)</p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0 d-grid">
+                    <a href="@Url.Action("Details", "Home", new { id = item.SeoUrl })" class="btn btn-outline-danger btn-lg rounded-0 fw-bold">İNCELE & BİLET AL</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,43 @@
+@model SinemaSalonu.Models.Movie
+
+@{
+    ViewBag.Title = "Film Sil";
+}
+
+<h2 class="text-uppercase fw-bold text-danger mt-4 mb-4">FİLMİ SİL?</h2>
+
+<div class="card bg-dark text-white rounded-0 border-danger p-4 shadow-lg mb-5" style="border: 2px solid #b71c1c;">
+    <h3 class="mb-4">Bu kaydı silmek istediğinizden emin misiniz?</h3>
+    
+    <dl class="row fs-5">
+        <dt class="col-sm-3 text-secondary">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-9 fw-bold">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt class="col-sm-3 text-secondary">
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+
+        <dt class="col-sm-3 text-secondary">
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.ReleaseDate.ToString("dd.MM.yyyy")
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        
+        <div class="d-flex gap-3 mt-4">
+            <input type="submit" value="EVET, SİL" class="btn btn-danger btn-lg rounded-0 fw-bold px-5" />
+            @Html.ActionLink("VAZGEÇ", "Index", null, new { @class = "btn btn-outline-light btn-lg rounded-0" })
+        </div>
+    }
+</div>
